@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花语 · 诗意绽放</title>
+    <link rel="stylesheet" href="flower-styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 via-blue-700 to-purple-600 text-white shadow-2xl">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col items-center justify-center">
+                <div class="mb-4">
+                    <svg class="w-16 h-16 text-purple-200" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9zm2-3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm0-6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                    </svg>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold tracking-wider mb-3">花语 · 诗意绽放</h1>
+                <p class="text-blue-100 text-lg">每一朵花都藏着一个秘密</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-5xl mx-auto">
+            <!-- Generate Button -->
+            <div class="text-center mb-12">
+                <button 
+                    id="generateBtn"
+                    class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-xl flex items-center mx-auto"
+                >
+                    <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                    随机开启
+                </button>
+            </div>
+
+            <!-- Flower Card -->
+            <div id="flowerCard" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-500 opacity-0 translate-y-10">
+                <!-- Flower Image -->
+                <div class="relative">
+                    <img 
+                        id="flowerImage" 
+                        src="" 
+                        alt="花卉图片"
+                        class="w-full h-80 md:h-96 object-cover"
+                        onerror="this.src='https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&h=600&fit=crop'"
+                    >
+                    <div class="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/50 to-transparent p-6">
+                        <span id="flowerNameEn" class="text-white text-xl font-light italic tracking-wider"></span>
+                    </div>
+                </div>
+
+                <!-- Flower Info -->
+                <div class="p-8 md:p-10">
+                    <!-- Flower Name -->
+                    <div class="mb-6">
+                        <h2 id="flowerName" class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4"></h2>
+                        <div class="flex items-center">
+                            <span class="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold">
+                                花语
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Flower Language -->
+                    <div class="mb-8">
+                        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 border-l-4 border-purple-500">
+                            <p id="flowerLanguage" class="text-2xl md:text-3xl text-gray-800 leading-relaxed font-medium"></p>
+                        </div>
+                    </div>
+
+                    <!-- Poetry Interpretation -->
+                    <div class="mb-8">
+                        <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl p-6 border-l-4 border-blue-500">
+                            <div class="flex items-start mb-4">
+                                <svg class="w-6 h-6 text-purple-600 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                <span class="text-purple-700 font-semibold text-lg">诗意解读</span>
+                            </div>
+                            <p id="poetryInterpretation" class="text-xl md:text-2xl text-gray-700 leading-loose italic"></p>
+                        </div>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="flex gap-4 justify-center">
+                        <button 
+                            id="shareBtn"
+                            class="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                        >
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                            </svg>
+                            分享
+                        </button>
+                        <button 
+                            id="copyBtn"
+                            class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 flex items-center justify-center"
+                        >
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                            复制
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="hidden">
+                <div class="flex flex-col items-center justify-center py-20">
+                    <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mb-4"></div>
+                    <p class="text-gray-600 text-lg">正在寻找最懂你的花...</p>
+                </div>
+            </div>
+
+            <!-- Initial State -->
+            <div id="initialState">
+                <div class="text-center py-20">
+                    <svg class="w-32 h-32 text-blue-200 mx-auto mb-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9zm2-3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm0-6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                    </svg>
+                    <p class="text-gray-500 text-xl mb-2">点击上方按钮</p>
+                    <p class="text-gray-400 text-lg">开启你的花语之旅</p>
+                </div>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="grid md:grid-cols-3 gap-8 mt-16">
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-3">精选花语</h3>
+                    <p class="text-gray-600 leading-relaxed">每一种花语都经过精心挑选，传递最真挚的情感</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-3">诗意解读</h3>
+                    <p class="text-gray-600 leading-relaxed">文艺化的语言，让每一朵花都充满诗情画意</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-2xl transition-shadow duration-300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-800 mb-3">视觉盛宴</h3>
+                    <p class="text-gray-600 leading-relaxed">精美图片配以优雅设计，带来视觉享受</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-800 via-purple-800 to-blue-900 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-blue-200 mb-2">花语 · 诗意绽放</p>
+            <p class="text-sm text-blue-300">每一朵花都藏着一个秘密，每一个秘密都值得被发现</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-8 py-4 rounded-2xl shadow-2xl opacity-0 transition-all duration-300 z-50">
+        <div class="flex items-center">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            <span id="toastMessage">复制成功！</span>
+        </div>
+    </div>
+
+    <script src="flower-script.js"></script>
+</body>
+</html>
