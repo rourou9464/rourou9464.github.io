@@ -3,183 +3,489 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DNA互补链生成器</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>rourou9464 - 个人主页</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #3B82F6;
+            --secondary-blue: #1E40AF;
+            --accent-purple: #8B5CF6;
+            --accent-purple-dark: #6D28D9;
+            --bg-light: #EFF6FF;
+            --bg-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 50%, var(--bg-light) 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-purple) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><path d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/></g></g></svg>');
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-60px) rotate(360deg); }
+        }
+
+        /* Avatar Animation */
+        .avatar-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+        }
+
+        .avatar-container::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple), var(--primary-blue));
+            background-size: 400% 400%;
+            animation: gradient-rotate 3s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradient-rotate {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-purple));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        /* Technology Tags */
+        .tech-tag {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-purple) 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+            margin: 4px;
+        }
+
+        /* GitHub Link Button */
+        .github-btn {
+            background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+            transition: all 0.3s ease;
+        }
+
+        .github-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(36, 41, 46, 0.4);
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--accent-purple-dark) 100%);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-blue), var(--accent-purple));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--secondary-blue), var(--accent-purple-dark));
+        }
+
+        /* Text Selection */
+        ::selection {
+            background: rgba(139, 92, 246, 0.3);
+            color: var(--text-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .avatar-container {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .project-image {
+                height: 160px;
+            }
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
-    <!-- Header -->
-    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex items-center justify-center">
-                <div class="flex items-center space-x-3">
-                    <!-- DNA Helix Icon -->
-                    <svg class="w-10 h-10 text-purple-300" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.51-3.22-7.51-3.22c.61-1.86 2.06-3.31 3.92-3.92l3.22 7.51-3.22-7.51c-1.86.61-3.31 2.06-3.92 3.92z"/>
-                    </svg>
-                    <h1 class="text-3xl font-bold tracking-wide">DNA互补链生成器</h1>
-                </div>
-            </div>
-            <p class="text-center mt-2 text-blue-200 text-sm">快速准确生成DNA序列的互补链</p>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <div class="max-w-4xl mx-auto">
-            <!-- Input Section -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 mb-6 border-t-4 border-purple-500">
-                <div class="mb-6">
-                    <label class="block text-gray-700 font-semibold mb-3 text-lg">
-                        <span class="flex items-center">
-                            <svg class="w-5 h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
-                            </svg>
-                            输入DNA序列
-                        </span>
-                    </label>
-                    <textarea 
-                        id="dnaInput" 
-                        class="w-full px-4 py-3 border-2 border-blue-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-300 resize-none text-lg font-mono"
-                        rows="6"
-                        placeholder="输入DNA序列（A、T、G、C）&#10;示例：ATCGATCGATCG"
-                    ></textarea>
-                    <p class="mt-2 text-sm text-gray-500">只接受 A、T、G、C 四种碱基，不区分大小写</p>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="flex flex-wrap gap-4">
-                    <button 
-                        id="generateBtn"
-                        class="flex-1 min-w-48 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-xl shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+                <!-- Avatar -->
+                <div class="avatar-container flex-shrink-0">
+                    <img 
+                        src="avatar.jpg" 
+                        alt="rourou9464 avatar"
+                        class="w-full h-full rounded-full border-4 border-white object-cover"
+                        onerror="this.src='https://placehold.co/160x160/8B5CF6/FFFFFF?text=R9'"
                     >
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                        生成互补链
-                    </button>
-                    <button 
-                        id="clearBtn"
-                        class="flex-1 min-w-48 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-all duration-300 flex items-center justify-center"
-                    >
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                        </svg>
-                        清空
-                    </button>
-                </div>
-            </div>
-
-            <!-- Result Section -->
-            <div id="resultSection" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-blue-500 hidden">
-                <div class="mb-4">
-                    <h2 class="text-xl font-bold text-gray-800 flex items-center">
-                        <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        互补链结果
-                    </h2>
                 </div>
                 
-                <!-- Original Sequence -->
-                <div class="mb-4">
-                    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border-l-4 border-blue-500">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-semibold text-blue-700">原始序列</span>
-                            <span id="originalLength" class="text-xs text-blue-600 bg-blue-200 px-2 py-1 rounded-full"></span>
-                        </div>
-                        <p id="originalSequence" class="font-mono text-lg text-gray-800 break-all word-spacing tracking-wider"></p>
+                <!-- Profile Info -->
+                <div class="text-center md:text-left text-white">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-3">@rourou9464</h1>
+                    <p class="text-xl md:text-2xl font-light mb-6 opacity-90">全栈开发者 | 创意编程爱好者</p>
+                    <p class="text-base md:text-lg opacity-80 max-w-xl mb-8 leading-relaxed">
+                        热爱编程，专注于创建优雅实用的Web应用。<br class="hidden md:inline">
+                        善于将创意转化为代码，用技术解决实际问题。
+                    </p>
+                    
+                    <!-- Social Links -->
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <a 
+                            href="https://github.com/rourou9464" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="github-btn text-white px-6 py-3 rounded-xl flex items-center font-semibold hover:no-underline"
+                        >
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.91 3.221 1.91 4.609 0 8.336-3.714 8.336-8.336 0-5.027-3.774-9.137-8.604-9.423-.093-.006-.185-.009-.278-.009z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a 
+                            href="mailto:rourou9464@example.com" 
+                            class="bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-xl flex items-center font-semibold transition-all hover:no-underline"
+                        >
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            联系我
+                        </a>
                     </div>
-                </div>
-
-                <!-- Complementary Sequence -->
-                <div class="mb-4">
-                    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-4 border-l-4 border-purple-500">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-sm font-semibold text-purple-700">互补链</span>
-                            <span id="complementaryLength" class="text-xs text-purple-600 bg-purple-200 px-2 py-1 rounded-full"></span>
-                        </div>
-                        <p id="complementarySequence" class="font-mono text-lg text-gray-800 break-all word-spacing tracking-wider"></p>
-                    </div>
-                </div>
-
-                <!-- Copy Button -->
-                <div class="flex justify-end">
-                    <button 
-                        id="copyBtn"
-                        class="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center"
-                    >
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                        </svg>
-                        复制结果
-                    </button>
-                </div>
-            </div>
-
-            <!-- Error Message -->
-            <div id="errorMessage" class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-xl hidden">
-                <div class="flex items-start">
-                    <svg class="w-6 h-6 text-red-600 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                    </svg>
-                    <div>
-                        <p class="font-semibold text-red-800">错误</p>
-                        <p id="errorText" class="text-red-700 mt-1"></p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Info Cards -->
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
-                <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-bold text-gray-800 mb-2">碱基配对规则</h3>
-                    <p class="text-sm text-gray-600">A↔T，G↔C</p>
-                </div>
-                <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-bold text-gray-800 mb-2">实时验证</h3>
-                    <p class="text-sm text-gray-600">自动检测非法字符</p>
-                </div>
-                <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                    </div>
-                    <h3 class="font-bold text-gray-800 mb-2">一键复制</h3>
-                    <p class="text-sm text-gray-600">快速复制结果</p>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 px-4 -mt-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="stat-card rounded-2xl p-6 text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">2</div>
+                    <div class="text-gray-600 font-medium">开源项目</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">100%</div>
+                    <div class="text-gray-600 font-medium">完成度</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">HTML</div>
+                    <div class="text-gray-600 font-medium">JavaScript</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">CSS</div>
+                    <div class="text-gray-600 font-medium">Tailwind</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+                    我的项目
+                </h2>
+                <p class="text-gray-600 text-lg">点击项目卡片即可查看详情</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- DNA Complementary Chain Generator -->
+                <a 
+                    href="dna-complementary-chain.html" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-card group block hover:no-underline"
+                >
+                    <div class="overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop" 
+                            alt="DNA互补链生成器"
+                            class="project-image"
+                            onerror="this.src='https://placehold.co/800x400/3B82F6/FFFFFF?text=DNA+Generator'"
+                        >
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all">
+                                DNA互补链生成器
+                            </h3>
+                            <svg class="w-6 h-6 text-gray-400 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            快速准确生成DNA序列的互补链，支持碱基配对验证和一键复制功能。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Flower Language Generator -->
+                <a 
+                    href="flower-language.html" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-card group block hover:no-underline"
+                >
+                    <div class="overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&h=400&fit=crop" 
+                            alt="花语生成器"
+                            class="project-image"
+                            onerror="this.src='https://placehold.co/800x400/8B5CF6/FFFFFF?text=Flower+Language'"
+                        >
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-2xl font-bold text-gray-800 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all">
+                                花语生成器
+                            </h3>
+                            <svg class="w-6 h-6 text-gray-400 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            随机生成精选花语，配以诗意解读和精美图片，传递真挚情感。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-16 px-4 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+                    技术栈
+                </h2>
+                <p class="text-gray-600 text-lg">持续学习，不断进步</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-r from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🔥</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">HTML5</h3>
+                    <p class="text-gray-600 text-sm">语义化标记</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🎨</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">CSS3</h3>
+                    <p class="text-gray-600 text-sm">现代化样式</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">⚡</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">JavaScript</h3>
+                    <p class="text-gray-600 text-sm">交互逻辑</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">💨</span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">Tailwind</h3>
+                    <p class="text-gray-600 text-sm">实用工具</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+                期待合作
+            </h2>
+            <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                如果你有任何想法或建议，欢迎随时联系我。<br class="hidden md:inline">
+                让我们一起创造更美好的产品！
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a 
+                    href="https://github.com/rourou9464" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="github-btn text-white px-8 py-4 rounded-xl flex items-center font-semibold text-lg hover:no-underline"
+                >
+                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.91 3.221 1.91 4.609 0 8.336-3.714 8.336-8.336 0-5.027-3.774-9.137-8.604-9.423-.093-.006-.185-.009-.278-.009z"/>
+                    </svg>
+                    查看 GitHub
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-r from-blue-800 to-blue-900 text-white py-6 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-sm text-blue-200">© 2026 DNA互补链生成器 | 快速 · 准确 · 便捷</p>
+    <footer class="py-8 text-white">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-lg mb-2">© 2026 rourou9464</p>
+            <p class="text-blue-200 text-sm">用心创造，用爱编程</p>
         </div>
     </footer>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+    <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-8 py-4 rounded-2xl shadow-2xl opacity-0 transition-all duration-300 z-50">
         <div class="flex items-center">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
             </svg>
-            <span id="toastMessage">复制成功！</span>
+            <span id="toastMessage">欢迎来到我的主页！</span>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translate(-50%, 0)';
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 20px)';
+            }, 3000);
+        }
+
+        // Page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                showToast('欢迎来到我的主页！');
+            }, 1000);
+        });
+
+        // Project card click animation
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        console.log('rourou9464 个人主页已加载');
+    </script>
 </body>
 </html>
